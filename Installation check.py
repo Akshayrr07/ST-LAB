@@ -1,13 +1,14 @@
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.service import Service
 
-browser = webdriver.Firefox('"E:\DOWNLOADS\CHROME\geckodriver-v0.35.0-win-aarch64\geckodriver.exe"')
+# Correct path to ChromeDriver
+chrome_driver_path = r"D:\PROJECTS\ST\ST-LAB\chromedriver.exe"
 
-browser.get('http://www.yahoo.com')
-assert 'Yahoo' in browser.title
+# Initialize the ChromeDriver using Service
+service = Service(chrome_driver_path)
+driver = webdriver.Chrome(service=service)
 
-elem = browser.find_element(By.NAME, 'p')  # Find the search box
-elem.send_keys('seleniumhq' + Keys.RETURN)
+# Open a website
+driver.get("http://selenium.dev")
 
-browser.quit()
+
